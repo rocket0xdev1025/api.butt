@@ -18,6 +18,21 @@ app.get('/message', async (req, res) => {
   }
 });
 
+
+app.get('/stats', async (req, res) => {
+
+  try {
+    const response = await fetch('https://fartworth.com/api/stats');
+    const data = await response.json();
+    res.json(data);
+  } catch (err) {
+    console.error('Error fetching data:', err);
+    res.status(500).json({
+      error: 'Failed to retrieve data'
+    });
+  }
+});
+
 app.get('/messages', async (req, res) => {
   try {
     const {
